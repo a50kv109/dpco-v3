@@ -1,0 +1,10 @@
+{
+  "servers": {
+    "dpco-v3": {
+      "type": "stdio",
+      "command": "npm",
+      "args": ["run", "mcp"],
+      "cwd": "/home/andrii/AI-Workspace/DPCO/DPCO_V3"
+    }
+  }
+}

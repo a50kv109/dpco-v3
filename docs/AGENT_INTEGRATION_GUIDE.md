@@ -2,7 +2,7 @@
 
 ## Status and scope
 
-This guide documents the **currently implemented in-process TypeScript API only**. DPCO V3 does not currently provide a REST API, MCP server, CLI task endpoint, Python client, or external-agent adapter. DEAS-1 and its transports are **DESIGNED**, not running implementations.
+This guide documents the **in-process TypeScript API**. DPCO V3 also provides a local STDIO MCP task ingress; see [MCP Integration](./MCP_INTEGRATION.md) for its tools and connection instructions. REST/HTTP, CLI, Python, remote MCP, and DEAS-1 executor transports are not implemented.
 
 DPCO is Agent Support Middleware for bounded mathematical and discrete 2D geometry operations. The agent formulates a task; DPCO validates and admits it, dispatches to an executor, independently verifies the result, classifies it, and appends a ledger record. DPCO is not a general-purpose agent runtime.
 
@@ -169,13 +169,13 @@ The statuses are separate dimensions:
 
 `final_claimVerdict` is a separate result and may be `TRUE`, `FALSE`, `UNKNOWN`, or `NOT_APPLICABLE`. `reason` and step details are strings, not a stable machine-readable error-code contract. The response includes evidence IDs but not evidence documents or external evidence URLs.
 
-## Unsupported interfaces and cautions
+## Other unsupported interfaces and cautions
 
-- No REST/HTTP task endpoint, MCP server, CLI ingress, or Python agent client is implemented. The `express` dependency does not constitute a running API.
+- No REST/HTTP task endpoint, CLI ingress, or Python agent client is implemented. The `express` dependency does not constitute a running API.
+- The MCP ingress is local STDIO only and has no network authentication; do not treat it as a remote service.
 - The React/Vite app is a browser UI that invokes `DPCOCore` directly; it is not an external-agent API.
-- `INTEGRATION_GUIDE.md` and DEAS-1 transport descriptions are design material, not proof of a functioning adapter.
+- DEAS-1 transport descriptions are design material, not proof of functioning external executor adapters.
 - The UI startup currently runs the verification suites against a fresh core without the acceptance runner's test-only admission setup. In an audit probe of the same suite-function sequence, 36/54 passed. The browser UI and its displayed state have not been tested.
 - Do not interpret `TEST_SUITE_PASSED` evidence as formal proof of algorithm correctness, a manifest declaration as runtime availability, or a residual check as proof of unique solvability.
 
-See [`AGENT_INGRESS_AUDIT.md`](./AGENT_INGRESS_AUDIT.md) for the evidence-based implementation, test, design, missing, and not-tested findings.
-
+See [`AGENT_INGRESS_AUDIT.md`](./AGENT_INGRESS_AUDIT.md) for the original ingress snapshot and its MCP implementation follow-up.

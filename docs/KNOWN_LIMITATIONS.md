@@ -18,7 +18,7 @@
 ## Isolation, execution, and scope
 
 - The current isolation wrapper is in-process; synchronous work cannot be forcibly interrupted by a post-call timeout check.
-- DEAS-1, external subprocess adapters, and external artifact security are **DESIGNED**, not running implementations.
+- DEAS-1 executor transports, external subprocess adapters, remote HTTP hosting, and external artifact security are **DESIGNED**, not running implementations. A separate local STDIO MCP task ingress is implemented; see [MCP Integration](./MCP_INTEGRATION.md).
 - Geometry support is limited to implemented discrete 2D operations; it is not a general geometry theorem prover or physical folding simulator.
 - Browser/UI, live API integration, production deployment, and the legacy Python PoC tests were **NOT_TESTED** in the V3 validation run.
 - The Vite build succeeds but warns that the configuration uses `__dirname` with the future native config loader.

@@ -3,6 +3,8 @@
 **Audit date:** 2026-11-08  
 **Scope:** Existing agent-facing entry points, task and result contracts, capability discovery, admission, and integration documentation. No runtime or mathematical code was changed.
 
+> **Historical snapshot:** This audit captured the state before the local MCP adapter was implemented. See the [MCP implementation follow-up](#mcp-implementation-follow-up) for current ingress status.
+
 ## Executive summary
 
 DPCO V3 has an **in-process TypeScript API**: `DPCOCore.processTask(task, forceExecutor?)`. It is not a network service or a supported external-agent transport. The React/Vite application is a local UI that calls the same core in the browser.
@@ -94,3 +96,10 @@ The suite-function probe was not a browser test. The browser UI itself remains *
 - [`src/App.tsx`](../src/App.tsx) — browser app invokes the test suites on a fresh core.
 - [`docs/DPCO_V3_VALIDATION_REPORT.md`](./DPCO_V3_VALIDATION_REPORT.md) — prior CLI acceptance results and test-only qualification details.
 
+## MCP implementation follow-up
+
+After this read-only audit, a separate local STDIO MCP adapter was implemented under [`src/integrations/mcp/`](../src/integrations/mcp/). It exposes `dpco_list_capabilities`, `dpco_validate_task`, `dpco_execute_task`, and `dpco_get_result`, mapping `solve_system_multivar` to the existing Core `solve_system` operation. The adapter does not create admission grants or evidence.
+
+**TESTED:** `npm run test:mcp` starts a real STDIO server process and invokes all four MCP tools. Integration tests also verified a blocked task in a fresh Core, and a verified scalar result on a separate test Core prepared by direct executor/IndependentVerifier preflight. The MCP server itself remains fail-closed by default.
+
+**NOT IMPLEMENTED:** remote MCP/HTTP hosting, network authentication, CLI/Python ingress, or DEAS-1 executor transports. See [MCP Integration](./MCP_INTEGRATION.md) and [MCP Security](./MCP_SECURITY.md).

@@ -40,6 +40,10 @@ npx tsx scripts/test_multivar_suite.ts
 
 The latest recorded results are in [the V3 validation report](docs/DPCO_V3_VALIDATION_REPORT.md). Test results cover the listed fixtures only; they are not a proof of correctness over all inputs.
 
+## Local MCP adapter
+
+DPCO V3 includes a local STDIO MCP server. Start it from the project root with `npm run mcp`; setup and tool contracts are documented in [the MCP integration guide](docs/MCP_INTEGRATION.md). The server uses existing Core admission and verification and does not issue grants. Remote HTTP hosting is not implemented.
+
 ## Status terminology
 
 - **IMPLEMENTED:** code exists in this copy.

@@ -1,6 +1,6 @@
 # DPCO Integration Guide
 
-> **DPCO V3 status:** This page describes the DEAS-1 design, not an implemented external-agent or executor transport. No REST, MCP, CLI, or Python adapter is currently available. For the actual in-process TypeScript entry point and its limitations, see [the Agent Integration Guide](docs/AGENT_INTEGRATION_GUIDE.md) and [the Agent Ingress Audit](docs/AGENT_INGRESS_AUDIT.md).
+> **DPCO V3 status:** This page describes the DEAS-1 external-executor design. A separate local STDIO MCP server is implemented for agent-to-DPCO task submission; see [the MCP Integration Guide](docs/MCP_INTEGRATION.md). REST/HTTP, CLI, Python, and DEAS-1 executor transports remain unimplemented.
 
 ## 1. Overview
 This guide outlines how to integrate external mathematical, geometric, or CAD software systems into DPCO using the **DEAS-1 (DPCO External Executor Adapter Standard v1)** runtime contract.
