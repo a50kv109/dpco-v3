@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpco.dev/schemas/v1/capability-manifest.json",
+  "title": "DPCO Capability Manifest v1.0.2",
+  "type": "object",
+  "required": ["manifest_version", "dpco_edition", "numeric_domains", "operations"],
+  "properties": {
+    "manifest_version": { "const": "1.0.2" },
+    "dpco_edition": { "type": "string" },
+    "numeric_domains": { "type": "array", "items": { "type": "string" } },
+    "operations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "category", "summary", "implementation_status", "param_profile"],
+        "properties": {
+          "id": { "type": "string" },
+          "category": { "type": "string" },
+          "summary": { "type": "string" },
+          "implementation_status": {
+            "type": "string",
+            "enum": ["IMPLEMENTED", "AVAILABLE", "IMPLEMENTED_BUT_DISABLED", "DESIGNED", "UNSUPPORTED"]
+          },
+          "param_profile": {
+            "type": "string",
+            "enum": ["legacy_eqs", "matrix_rhs", "standard"]
+          },
+          "activation": { "type": "string" },
+          "params_summary": { "type": "string" }
+        }
+      }
+    }
+  }
+}

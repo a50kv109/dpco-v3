@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpco.dev/schemas/v1/task.json",
+  "title": "DPCO Task v1.0.2",
+  "type": "object",
+  "required": ["id", "operation", "params"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "operation": {
+      "type": "string",
+      "enum": [
+        "solve_linear",
+        "solve_system",
+        "solve_system_multivar",
+        "intersect_lines",
+        "verify_point_on_line",
+        "verify_point_on_circle",
+        "verify_tangency",
+        "intersect_line_circle"
+      ]
+    },
+    "params": { "type": "object" },
+    "claim": { "type": ["object", "null"] },
+    "constraints": {
+      "type": "object",
+      "properties": {
+        "exact": { "type": "boolean" },
+        "required_rigor": {
+          "type": "string",
+          "enum": ["TESTED", "INSTANCE_VERIFIED", "DOMAIN_VERIFIED"]
+        },
+        "domain": { "type": "string" }
+      }
+    },
+    "execution_mode": {
+      "type": "string",
+      "enum": ["PRODUCTION", "DIAGNOSTIC_TEST"]
+    }
+  },
+  "additionalProperties": false,
+  "$comment": "Operation-specific param schemas are documented in Capability Manifest param_profile. Runtime AJV validation is NOT implemented in this edition."
+}

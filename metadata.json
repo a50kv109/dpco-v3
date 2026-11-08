@@ -1,0 +1,6 @@
+{
+  "name": "DPCO V3",
+  "description": "Specialized Agent Support Middleware for mathematical and discrete geometry operations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
